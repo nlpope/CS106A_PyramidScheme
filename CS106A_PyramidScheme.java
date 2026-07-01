@@ -14,7 +14,8 @@ public class CS106A_PyramidScheme extends GraphicsProgram
 	private static final int BRICK_WIDTH = 30;
 	private static final int BRICK_HEIGHT = 12;
 	private int BRICKS_IN_BASE = 14;
-	private GPoint BASE_ORIGIN = new GPoint((getWidth() / 2), getHeight());
+	private int PYRAMID_HEIGHT = (BRICKS_IN_BASE) * BRICK_HEIGHT;
+	private GPoint BASE_ORIGIN = new GPoint((getWidth() / 2), getHeight() - BRICK_HEIGHT);
 	//easiest to backtrack from here then making the bricks as you move to the end.
 	
 	public void run()
@@ -25,33 +26,40 @@ public class CS106A_PyramidScheme extends GraphicsProgram
 	
 	private void createPyramid()
 	{
-		int bricksInRow = BRICKS_IN_BASE;
-		while (bricksInRow > 0) {
-			for(int i = 0; i < bricksInRow; i--) {
-				//backtrack from starting point to the length of bricks/2
-			}
-			bricksInRow--;
+		int totalBricks = 0;
+		int tmpBricks = BRICKS_IN_BASE;
+		
+		while (tmpBricks > 0) { 
+			totalBricks += tmpBricks;
+			tmpBricks -= 1;
+			println("tmpBricks = " + tmpBricks);
+			println("totalBricks = " + totalBricks);
 		}
 		
 		
-		//acct for y getting smaller and smaller (moving up)
-		GPoint iRowStartingPoint = BASE_ORIGIN.getLocation();
-		
-		//if num of bricks % 2 == 0, lay 2 bricks; else, lay 1 prick
-		//for i=0; i <= (bricks in base / 2); i--{}
-		//then backtrack to starting point
-		//then for i = 0; i <= (bricks in base / 2); i++{}
-		
-		
-		for (int i = 0; i < N_ROWS; i++) { //rows lie horizontal but move down (y changes here)
-			for (int j = 0; j < N_COLUMNS; j++){ //columns lie vertically, but move across (x changes here)
-				double x = j * sqSize;
-				double y = i * sqSize;
-				GRect square = new GRect(x, y, sqSize, sqSize);
-				square.setColor(Color.PINK);
-				square.setFilled((i + j) % 2 == 0);//careful here, account for x AND y before testing
-				add(square);
-			}
+		for (int i = 0; i < PYRAMID_HEIGHT; i++) {
+			
 		}
+		
+		
+		
+		
+		
+		
+		while (totalBricks > 0) {
+			//backtrack from BASE_ORIGIN to bricks in base / 2 (-x)
+			
+			GPoint newBrickOrigin = new GPoint(BASE_ORIGIN.getX() - 2,3);
+			//make a GRect @ backtrackedPoint (x,y) at size (brick width, brick height)
+			GRect newBrick = new GRect(
+					newBrickOrigin.getX(),
+					newBrickOrigin.getY(), 
+					BRICK_WIDTH, 
+					BRICK_HEIGHT		
+			);
+			totalBricks--;
+		}
+		
+			
 	}
 }
