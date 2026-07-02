@@ -5,7 +5,6 @@
  */
 
 import java.awt.Color;
-
 import acm.program.*;
 import acm.graphics.*;
 
@@ -32,13 +31,21 @@ public class CS106A_PyramidScheme extends GraphicsProgram
 		while (tmpBricks > 0) { 
 			totalBricks += tmpBricks;
 			tmpBricks -= 1;
-			println("tmpBricks = " + tmpBricks);
-			println("totalBricks = " + totalBricks);
 		}
 		
+		//STICK THIS IN FOR LOOP NESTED IN WHILE LOOP BELOW
+		//find new origin for row
 		
+		//create a brick there
 		for (int i = 0; i < PYRAMID_HEIGHT; i++) {
-			
+			GPoint rowOrigin = new GPoint(0.0,BASE_ORIGIN.getY() - i * BRICK_HEIGHT);
+			GPoint brickGPoint = new GPoint(BASE_ORIGIN.getX() - 1,BASE_ORIGIN.getY() - i * BRICK_HEIGHT);
+			GRect newBrick = new GRect(
+					brickGPoint.getX(), 
+					brickGPoint.getY(), 
+					BRICK_WIDTH, 
+					BRICK_HEIGHT
+			);
 		}
 		
 		
@@ -46,6 +53,10 @@ public class CS106A_PyramidScheme extends GraphicsProgram
 		
 		
 		
+		
+		
+		
+	
 		while (totalBricks > 0) {
 			//backtrack from BASE_ORIGIN to bricks in base / 2 (-x)
 			
@@ -57,6 +68,10 @@ public class CS106A_PyramidScheme extends GraphicsProgram
 					BRICK_WIDTH, 
 					BRICK_HEIGHT		
 			);
+			
+			for (int i = 0; i < PYRAMID_HEIGHT; i++) {
+				
+			}
 			totalBricks--;
 		}
 		
